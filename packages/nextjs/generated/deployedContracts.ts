@@ -5,7 +5,7 @@ const contracts = {
       name: "polygonMumbai",
       contracts: {
         ExampleExternalContract: {
-          address: "0x4DB662358AFc85a12D93B0d84907E47362980829",
+          address: "0x59205AB138CDaAB2D5af773eDC3E6e49984a8cCB",
           abi: [
             {
               inputs: [],
@@ -30,7 +30,7 @@ const contracts = {
           ],
         },
         Staker: {
-          address: "0xF31353Ad9c5B8216f4825cD30E8bDD351E85C7BD",
+          address: "0xF4FcfDcC54c8B1bcC509Fb71FCF77AbfeD35308f",
           abi: [
             {
               inputs: [

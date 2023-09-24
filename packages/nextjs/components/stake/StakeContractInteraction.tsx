@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { Address } from "../scaffold-eth";
 import { ETHToPrice } from "./EthToPrice";
 import humanizeDuration from "humanize-duration";
@@ -10,6 +11,8 @@ import {
   useScaffoldContractWrite,
 } from "~~/hooks/scaffold-eth";
 import { getTargetNetwork } from "~~/utils/scaffold-eth";
+import { Countdown } from "../section/countdown";
+import { useEffectOnce } from "usehooks-ts";
 
 export const StakeContractInteraction = ({ address }: { address?: string }) => {
   const { address: connectedAddress } = useAccount();
@@ -61,26 +64,13 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
 
   return (
     <div className="flex items-center flex-col flex-grow w-full px-4 gap-12">
-      {isStakingCompleted && (
-        <div className="flex flex-col items-center gap-2 bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-6 mt-12 w-full max-w-lg">
-          <p className="block m-0 font-semibold">
-            {" "}
-            🎉 &nbsp; Staking App triggered `ExampleExternalContract` &nbsp; 🎉{" "}
-          </p>
-          <div className="flex items-center">
-            <ETHToPrice
-              value={exampleExternalContractBalance != null ? exampleExternalContractBalance.toString() : undefined}
-              className="text-[1rem]"
-            />
-            <p className="block m-0 text-lg -ml-1">staked !!</p>
-          </div>
-        </div>
-      )}
+
       <div
-        className={`flex flex-col items-center space-y-8 bg-base-100 shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-6 w-full ${!isStakingCompleted ? "mt-24" : ""
+        className={`flex flex-col items-center space-y-8 bg-white shadow-lg shadow-secondary border-8 border-secondary rounded-xl p-6 w-full ${!isStakingCompleted ? "mt-24" : ""
           }`}
       >
-        <div className="stats bg-primary text-primary-content">
+        <div className="stats text-primary-content">
+          <Countdown />
 
           <div className="stat">
             <div className="stat-title">Account balance</div>
@@ -100,14 +90,27 @@ export const StakeContractInteraction = ({ address }: { address?: string }) => {
           </div>
 
         </div>
+        <div className="form-control w-full max-w-xs">
+          <label className="label">
+            <span className="label-text">Enter Matic amount</span>
+            <span className="label-text-alt"><b>My MaticX : 0</b></span>
+          </label>
+          <input type="text" placeholder="0.0" className="input input-bordered w-full max-w-xs" />
+
+          <label className="label">
+            <span className="label-text-alt">You will get</span>
+            <span className="label-text-alt">0 MaticX</span>
+          </label>
+        </div>
         <div className="flex flex-col w-full items-center">
           <p className="block text-2xl mt-0 mb-2 font-semibold">Staker Contract</p>
           <Address address={address} size="xl" />
         </div>
         <div className="flex items-start justify-around w-full">
           <div className="flex flex-col items-center justify-center w-1/2">
-            <p className="block text-xl mt-0 mb-1 font-semibold">Time Left</p>
-            <p className="m-0 p-0">{timeLeft ? `${humanizeDuration(Number(timeLeft) * 1000)}` : 0}</p>
+            {/* <p className="block text-xl mt-0 mb-1 font-semibold">Time Left</p> */}
+            {/* <p className="m-0 p-0">{timeLeft ? `${humanizeDuration(Number(timeLeft) * 1000)}` : 0}</p> */}
+
           </div>
           <div className="flex flex-col items-center w-1/2">
             <p className="block text-xl mt-0 mb-1 font-semibold">You Staked</p>

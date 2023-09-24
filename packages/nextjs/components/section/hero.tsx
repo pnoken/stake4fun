@@ -1,6 +1,6 @@
 export const Hero = () => {
     return (
-        <section className="p-12 hero bg-blue-200">
+        <section className="p-12 hero bg-base-300 info-content">
             <div className="hero-content flex-col lg:flex-row-reverse">
                 <img src="/rewards.svg" className="md:max-w-xl max-w-xs rounded-lg" />
                 <div>
