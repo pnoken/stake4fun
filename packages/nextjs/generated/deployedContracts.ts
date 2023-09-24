@@ -5,7 +5,7 @@ const contracts = {
       name: "polygonMumbai",
       contracts: {
         ExternalContract: {
-          address: "0x59205AB138CDaAB2D5af773eDC3E6e49984a8cCB",
+          address: "0x4A7936dFfD48CeBA450C7D7258b1ED5254a09235",
           abi: [
             {
               inputs: [],
@@ -30,7 +30,7 @@ const contracts = {
           ],
         },
         Staker: {
-          address: "0xF4FcfDcC54c8B1bcC509Fb71FCF77AbfeD35308f",
+          address: "0x878dA7e87F29E5a0E392e4372265595A997fefeb",
           abi: [
             {
               inputs: [
@@ -42,6 +42,25 @@ const contracts = {
               ],
               stateMutability: "nonpayable",
               type: "constructor",
+            },
+            {
+              anonymous: false,
+              inputs: [
+                {
+                  indexed: true,
+                  internalType: "address",
+                  name: "user",
+                  type: "address",
+                },
+                {
+                  indexed: false,
+                  internalType: "uint256",
+                  name: "entries",
+                  type: "uint256",
+                },
+              ],
+              name: "Entry",
+              type: "event",
             },
             {
               anonymous: false,
@@ -95,6 +114,19 @@ const contracts = {
               type: "event",
             },
             {
+              inputs: [],
+              name: "apy",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
               inputs: [
                 {
                   internalType: "address",
@@ -103,6 +135,30 @@ const contracts = {
                 },
               ],
               name: "balances",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "depositAmount",
+                  type: "uint256",
+                },
+                {
+                  internalType: "uint256",
+                  name: "durationInSeconds",
+                  type: "uint256",
+                },
+              ],
+              name: "calculateEarnings",
               outputs: [
                 {
                   internalType: "uint256",
@@ -128,10 +184,17 @@ const contracts = {
             },
             {
               inputs: [],
+              name: "execute",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [],
               name: "externalContract",
               outputs: [
                 {
-                  internalType: "contract externalContract",
+                  internalType: "contract ExternalContract",
                   name: "",
                   type: "address",
                 },
@@ -141,9 +204,15 @@ const contracts = {
             },
             {
               inputs: [],
-              name: "execute",
-              outputs: [],
-              stateMutability: "nonpayable",
+              name: "getRatePerSecond",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
               type: "function",
             },
             {
@@ -161,9 +230,100 @@ const contracts = {
             },
             {
               inputs: [],
+              name: "owner",
+              outputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              name: "participants",
+              outputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "resetDeadline",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "secondsPerWeek",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "selectWinners",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "uint256",
+                  name: "newAPY",
+                  type: "uint256",
+                },
+              ],
+              name: "setAPY",
+              outputs: [],
+              stateMutability: "nonpayable",
+              type: "function",
+            },
+            {
+              inputs: [],
               name: "stake",
               outputs: [],
               stateMutability: "payable",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              name: "stakedMATIC",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
               type: "function",
             },
             {
@@ -182,6 +342,38 @@ const contracts = {
             {
               inputs: [],
               name: "timeLeft",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [],
+              name: "totalStakedMATIC",
+              outputs: [
+                {
+                  internalType: "uint256",
+                  name: "",
+                  type: "uint256",
+                },
+              ],
+              stateMutability: "view",
+              type: "function",
+            },
+            {
+              inputs: [
+                {
+                  internalType: "address",
+                  name: "",
+                  type: "address",
+                },
+              ],
+              name: "userRewardPerTokenPaid",
               outputs: [
                 {
                   internalType: "uint256",
@@ -219,7 +411,7 @@ const contracts = {
       chainId: "11155111",
       name: "sepolia",
       contracts: {
-        ExternalContract: {
+        ExampleExternalContract: {
           address: "0x59205AB138CDaAB2D5af773eDC3E6e49984a8cCB",
           abi: [
             {
@@ -251,7 +443,7 @@ const contracts = {
               inputs: [
                 {
                   internalType: "address",
-                  name: "externalContractAddress",
+                  name: "exampleExternalContractAddress",
                   type: "address",
                 },
               ],
@@ -343,10 +535,10 @@ const contracts = {
             },
             {
               inputs: [],
-              name: "externalContract",
+              name: "exampleExternalContract",
               outputs: [
                 {
-                  internalType: "contract ExternalContract",
+                  internalType: "contract ExampleExternalContract",
                   name: "",
                   type: "address",
                 },

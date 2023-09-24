@@ -1,5 +1,5 @@
 export const FAQ = () => {
-    return (<section className="mx-auto p-12">
+    return (<section id="faq" className="mx-auto p-12">
         <h1 className="text-5xl font-bold">Frequently asked questions</h1>
         <div className="collapse collapse-plus bg-base-200">
             <input type="radio" name="my-accordion-3" checked="checked" />

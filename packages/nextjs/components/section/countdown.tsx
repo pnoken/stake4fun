@@ -1,16 +1,20 @@
 import { useState, useEffect } from "react";
+import { useEffectOnce } from "usehooks-ts";
 import { useScaffoldContractRead } from "~~/hooks/scaffold-eth";
 export const Countdown = () => {
-    //const [timeLeft, setTimeLeft] = useState(initialTime);
     const { data: remainingTime } = useScaffoldContractRead({
         contractName: "Staker",
         functionName: "timeLeft",
         watch: true,
     });
 
-    const [timeLeft, setTimeLeft] = useState(Number(remainingTime));
+    const [timeLeft, setTimeLeft] = useState(0);
 
-    console.log("time left", timeLeft)
+    useEffect(() => {
+
+        setTimeout(() => setTimeLeft(Number(remainingTime)), 3000);
+    }, [remainingTime])
+
 
     useEffect(() => {
         // Exit the countdown if timeLeft reaches zero
@@ -27,7 +31,7 @@ export const Countdown = () => {
 
     // Format seconds into HH:MM:SS
     const days = Math.floor(timeLeft / 86400);
-    const hours = Math.floor((timeLeft % 3600) / 3600);
+    const hours = Math.floor(timeLeft / 3600) % 24;
     const minutes = Math.floor((timeLeft % 3600) / 60);
     const remainingSeconds = timeLeft % 60;
 

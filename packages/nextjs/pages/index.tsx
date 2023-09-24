@@ -6,6 +6,7 @@ import { Hero } from "~~/components/section/hero";
 import { Countdown } from "~~/components/section/countdown";
 import { LandingNav } from "~~/components/LandingNav";
 import { HowItWorks } from "~~/components/section/how-it-works";
+import { Mission } from "~~/components/section/mission";
 
 const Home: NextPage = () => {
   return (
@@ -13,6 +14,7 @@ const Home: NextPage = () => {
       <LandingNav />
       <Hero />
       <Countdown />
+      <Mission />
       <HowItWorks />
       <FAQ />
     </>

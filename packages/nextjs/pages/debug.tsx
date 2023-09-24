@@ -5,6 +5,7 @@ import { MetaHeader } from "~~/components/MetaHeader";
 import { ContractUI } from "~~/components/scaffold-eth";
 import { ContractName } from "~~/utils/scaffold-eth/contract";
 import { getContractNames } from "~~/utils/scaffold-eth/contractNames";
+import { Header } from "~~/components/Header";
 
 const selectedContractStorageKey = "scaffoldEth2.selectedContract";
 const contractNames = getContractNames();
@@ -27,6 +28,7 @@ const Debug: NextPage = () => {
         title="Debug Contracts | Scaffold-ETH 2"
         description="Debug your deployed 🏗 Scaffold-ETH 2 contracts in an easy way"
       />
+      <Header />
       <div className="flex flex-col gap-y-6 lg:gap-y-8 py-8 lg:py-12 justify-center items-center">
         {contractNames.length === 0 ? (
           <p className="text-3xl mt-14">No contracts found!</p>
@@ -36,9 +38,8 @@ const Debug: NextPage = () => {
               <div className="flex flex-row gap-2 w-full max-w-7xl pb-1 px-6 lg:px-10 flex-wrap">
                 {contractNames.map(contractName => (
                   <button
-                    className={`btn btn-secondary btn-sm normal-case font-thin ${
-                      contractName === selectedContract ? "bg-base-300" : "bg-base-100"
-                    }`}
+                    className={`btn btn-secondary btn-sm normal-case font-thin ${contractName === selectedContract ? "bg-base-300" : "bg-base-100"
+                      }`}
                     key={contractName}
                     onClick={() => setSelectedContract(contractName)}
                   >

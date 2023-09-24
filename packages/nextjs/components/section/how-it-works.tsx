@@ -1,6 +1,6 @@
 export const HowItWorks = () => {
     return (
-        <section className="hero bg-base-300 info-content flex flex-col p-12">
+        <section id="how-it-works" className="hero bg-base-300 info-content flex flex-col p-12">
             <h1 className="text-5xl font-bold">How it works</h1>
             <ul className="gap-12 flex md:flex-row flex-col p-12">
                 <img className="mask mask-hexagon max-w-xs md:w-1/4" src="/deposit.png" />
