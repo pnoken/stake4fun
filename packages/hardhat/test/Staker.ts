@@ -14,7 +14,7 @@ import { Contract } from "ethers";
 describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
   this.timeout(120000);
 
-  let exampleExternalContract: Contract;
+  let externalContract: Contract;
   let stakerContract: Contract;
 
   describe("Staker", function () {
@@ -24,13 +24,13 @@ describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
         console.log("     🛰 Connected to external contract", stakerContract.address);
       });
     } else {
-      it("Should deploy ExampleExternalContract", async function () {
-        const ExampleExternalContract = await ethers.getContractFactory("ExampleExternalContract");
-        exampleExternalContract = await ExampleExternalContract.deploy();
+      it("Should deploy ExternalContract", async function () {
+        const ExternalContract = await ethers.getContractFactory("ExternalContract");
+        externalContract = await ExternalContract.deploy();
       });
       it("Should deploy Staker", async function () {
         const Staker = await ethers.getContractFactory("Staker");
-        stakerContract = await Staker.deploy(exampleExternalContract.address);
+        stakerContract = await Staker.deploy(externalContract.address);
       });
     }
 
@@ -82,7 +82,7 @@ describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
           const execResult = await stakerContract.execute();
           console.log("\t", " 🏷  execResult: ", execResult.hash);
 
-          const result = await exampleExternalContract.completed();
+          const result = await externalContract.completed();
           console.log("\t", " 🥁 complete: ", result);
           expect(result).to.equal(true);
         });
@@ -90,11 +90,11 @@ describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
         it("Should redeploy Staker, stake, not get enough, and withdraw", async function () {
           const [owner, secondAccount] = await ethers.getSigners();
 
-          const ExampleExternalContract = await ethers.getContractFactory("ExampleExternalContract");
-          exampleExternalContract = await ExampleExternalContract.deploy();
+          const ExternalContract = await ethers.getContractFactory("ExternalContract");
+          externalContract = await ExternalContract.deploy();
 
           const Staker = await ethers.getContractFactory("Staker");
-          stakerContract = await Staker.deploy(exampleExternalContract.address);
+          stakerContract = await Staker.deploy(ExternalContract.address);
 
           console.log("\t", " 🔨 Staking...");
           const stakeResult = await stakerContract
@@ -114,7 +114,7 @@ describe("🚩 Challenge 1: 🥩 Decentralized Staking App", function () {
           const execResult = await stakerContract.execute();
           console.log("\t", " 🏷  execResult: ", execResult.hash);
 
-          const result = await exampleExternalContract.completed();
+          const result = await externalContract.completed();
           console.log("\t", " 🥁 complete should be false: ", result);
           expect(result).to.equal(false);
 

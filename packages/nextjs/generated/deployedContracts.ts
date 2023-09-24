@@ -4,7 +4,7 @@ const contracts = {
       chainId: "80001",
       name: "polygonMumbai",
       contracts: {
-        ExampleExternalContract: {
+        ExternalContract: {
           address: "0x59205AB138CDaAB2D5af773eDC3E6e49984a8cCB",
           abi: [
             {
@@ -36,7 +36,7 @@ const contracts = {
               inputs: [
                 {
                   internalType: "address",
-                  name: "exampleExternalContractAddress",
+                  name: "externalContractAddress",
                   type: "address",
                 },
               ],
@@ -128,10 +128,10 @@ const contracts = {
             },
             {
               inputs: [],
-              name: "exampleExternalContract",
+              name: "externalContract",
               outputs: [
                 {
-                  internalType: "contract ExampleExternalContract",
+                  internalType: "contract externalContract",
                   name: "",
                   type: "address",
                 },
@@ -219,7 +219,7 @@ const contracts = {
       chainId: "11155111",
       name: "sepolia",
       contracts: {
-        ExampleExternalContract: {
+        ExternalContract: {
           address: "0x59205AB138CDaAB2D5af773eDC3E6e49984a8cCB",
           abi: [
             {
@@ -251,7 +251,7 @@ const contracts = {
               inputs: [
                 {
                   internalType: "address",
-                  name: "exampleExternalContractAddress",
+                  name: "externalContractAddress",
                   type: "address",
                 },
               ],
@@ -343,10 +343,10 @@ const contracts = {
             },
             {
               inputs: [],
-              name: "exampleExternalContract",
+              name: "externalContract",
               outputs: [
                 {
-                  internalType: "contract ExampleExternalContract",
+                  internalType: "contract ExternalContract",
                   name: "",
                   type: "address",
                 },

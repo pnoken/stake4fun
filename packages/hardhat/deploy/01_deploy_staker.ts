@@ -20,12 +20,12 @@ const deployStaker: DeployFunction = async function (hre: HardhatRuntimeEnvironm
   */
   const { deployer } = await hre.getNamedAccounts();
   const { deploy, get } = hre.deployments;
-  const exampleExternalContract = await get("ExampleExternalContract");
+  const externalContract = await get("ExternalContract");
 
   await deploy("Staker", {
     from: deployer,
     // Contract constructor arguments
-    args: [exampleExternalContract.address],
+    args: [externalContract.address],
     log: true,
     // autoMine: can be passed to the deploy function to make the deployment process faster on local networks by
     // automatically mining the contract deployment transaction. There is no effect on live networks.

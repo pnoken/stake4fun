@@ -19,7 +19,7 @@ contract Staker {
 		rewardsToken = IERC20(_rewardToken);
 	}
 
-	// Modifier to check that ExampleExternalContract is not completed
+	// Modifier to check that ExternalContract is not completed
 	modifier notCompleted() {
 		require(
 			!externalContract.completed(),
@@ -56,7 +56,7 @@ contract Staker {
 	function execute() external notCompleted {
 		require(block.timestamp > deadline, "Deadline has not expired");
 		if (address(this).balance >= threshold) {
-			// If the deadline has passed and the threshold is met, it should call `exampleExternalContract.complete{value: address(this).balance}()`
+			// If the deadline has passed and the threshold is met, it should call `externalContract.complete{value: address(this).balance}()`
 			externalContract.complete{ value: address(this).balance }();
 		} else {
 			// If the `threshold` was not met, allow everyone to call a `withdraw()` function to withdraw their balance
